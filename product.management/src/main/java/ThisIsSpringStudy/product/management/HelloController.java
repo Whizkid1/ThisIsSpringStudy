@@ -16,4 +16,9 @@ public class HelloController {
                                 @RequestParam("content") String content) {
         return String.format("title=%s / content=%s", title, content);
     }
+
+    @RequestMapping("/get-with-no-parameter")
+    public String getWithNoParameter() {
+        return "파라미터가 없는 GET 요청";
+    }
 }
