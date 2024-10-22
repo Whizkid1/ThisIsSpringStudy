@@ -1,4 +1,4 @@
-package ThisIsSpringStudy.product.management;
+package ThisIsSpringStudy.product.management.domain;
 
 public class Product {
     //상품 번호
@@ -14,6 +14,10 @@ public class Product {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -25,5 +29,6 @@ public class Product {
     public Integer getAmount() {
         return amount;
     }
+
 
 }
