@@ -24,13 +24,13 @@ public class SimpleProductService {
     public ProductDto add(ProductDto productDto) {
         // 1. ProductDto를 Product로 변환하는 코드
         Product product = modelMapper.map(productDto, Product.class);
-        
+
         // 2. 레포지토리를 호출하는 코드
         Product savedProduct = listProductRepository.add(product);
-        
+
         // 3. Product를 ProductDto로 새로 변환하는 코드
         ProductDto savedProductDto = modelMapper.map(savedProduct, ProductDto.class);
-        
+
         // 4. DTO를 반환하는 코드
         return  savedProductDto;
     }
@@ -43,6 +43,12 @@ public class SimpleProductService {
 
     public List<ProductDto> findAll() {
         List<Product> products = listProductRepository.findAll();
+        List<ProductDto> productDtos = products.stream().map(product -> modelMapper.map(product, ProductDto.class)).toList();
+        return productDtos;
+    }
+
+    public List<ProductDto> findByNameContaining(String name) {
+        List<Product> products = listProductRepository.findByNameContaining(name);
         List<ProductDto> productDtos = products.stream().map(product -> modelMapper.map(product, ProductDto.class)).toList();
         return productDtos;
     }

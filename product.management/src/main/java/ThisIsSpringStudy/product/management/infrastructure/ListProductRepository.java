@@ -26,4 +26,8 @@ public class ListProductRepository {
     public List<Product> findAll() {
         return  products;
     }
+
+    public List<Product> findByNameContaining(String name) {
+        return  products.stream().filter(product -> product.containsName(name)).toList();
+    }
 }

@@ -22,9 +22,18 @@ public class ProductController {
         return simpleProductService.add(productDto);
     }
 
+//    @RequestMapping(value = "/products", method = RequestMethod.GET)
+//    public List<ProductDto> findAllProduct() {
+//        return simpleProductService.findAll();
+//    }
+
     @RequestMapping(value = "/products", method = RequestMethod.GET)
-    public List<ProductDto> findAllProduct() {
-        return simpleProductService.findAll();
+    public List<ProductDto> findProducts(
+        @RequestParam(required = false) String name
+    ) {
+        if (null == name)
+            return simpleProductService.findAll();
+        return  simpleProductService.findByNameContaining(name);
     }
 
     @RequestMapping(value = "/products/{id}", method = RequestMethod.GET)
