@@ -1,6 +1,7 @@
 package ThisIsSpringStudy.product.management.presentation;
 
 import ThisIsSpringStudy.product.management.application.SimpleProductService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class ProductController {
 
     // 아니 어떻게 getter method를 명시하지 않았는데 실행이 되지???
     @RequestMapping(value = "/products", method = RequestMethod.POST)
-    public ProductDto createProduct(@RequestBody ProductDto productDto) {
+    public ProductDto createProduct(@Valid @RequestBody ProductDto productDto) {
         return simpleProductService.add(productDto);
     }
 
