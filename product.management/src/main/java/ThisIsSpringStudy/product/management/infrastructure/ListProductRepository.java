@@ -1,5 +1,6 @@
 package ThisIsSpringStudy.product.management.infrastructure;
 
+import ThisIsSpringStudy.product.management.domain.EntityNotFoundException;
 import ThisIsSpringStudy.product.management.domain.Product;
 import org.springframework.stereotype.Repository;
 
@@ -20,7 +21,10 @@ public class ListProductRepository {
         return product;
     }
     public Product findById(Long id) {
-        return products.stream().filter(product -> product.sameId(id)).findFirst().orElseThrow();
+        return products.stream()
+                .filter(product -> product.sameId(id))
+                .findFirst()
+                .orElseThrow(() -> new EntityNotFoundException("Product를 찾지 못했습니다."));
     }
 
     public List<Product> findAll() {
