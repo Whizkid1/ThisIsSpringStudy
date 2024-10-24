@@ -1,5 +1,7 @@
 package ThisIsSpringStudy.product.management.domain;
 
+import java.util.Objects;
+
 public class Product {
     //상품 번호
     private Long id;
@@ -20,5 +22,14 @@ public class Product {
 
     public Boolean containsName(String name) {
         return this.name.contains(name);
+    }
+
+    // ListProductRepository의 update 함수에서 사용하는 indexOf 를 위한 구현
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Objects.equals(id, product.id);
     }
 }

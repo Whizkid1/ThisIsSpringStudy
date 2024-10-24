@@ -30,4 +30,10 @@ public class ListProductRepository {
     public List<Product> findByNameContaining(String name) {
         return  products.stream().filter(product -> product.containsName(name)).toList();
     }
+
+    public Product update(Product product) {
+        Integer indexToModify = products.indexOf(product);
+        products.set(indexToModify, product);
+        return product;
+    }
 }
