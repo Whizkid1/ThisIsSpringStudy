@@ -1,15 +1,27 @@
 package ThisIsSpringStudy.product.management.domain;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Size;
+
 import java.util.Objects;
 
 public class Product {
     //상품 번호
     private Long id;
+
     //상품 이름
+    @Size(min = 1, max = 100)
     private String name;
+
     //가격
+    @Max(1_000_000)
+    @Min(0)
     private Integer price;
+
     //재고 수량
+    @Max(9_999)
+    @Min(0)
     private Integer amount;
 
     public void setId(Long id) {
